@@ -7,12 +7,7 @@ import pauseSVG from "../icons/pause.svg";
 import resumeSVG from "../icons/play.svg";
 import saveSVG from "../icons/save.svg";
 import discardSVG from "../icons/stop.svg";
-import {
-  Mic,
-  Pause,
-  Play,
-  Square
-} from 'lucide-react';
+import { Mic, Pause, Play, Square } from "lucide-react";
 import "../styles/audio-recorder.css";
 
 const LiveAudioVisualizer = React.lazy(async () => {
@@ -140,14 +135,14 @@ const AudioRecorder: (props: Props) => ReactElement = ({
       }`}
       data-testid="audio_recorder"
     >
-      <img
-        src={isRecording ? saveSVG : micSVG}
+      <Mic
+        fill="white"
         className={`audio-recorder-mic ${
           classes?.AudioRecorderStartSaveClass ?? ""
         }`}
-        onClick={isRecording ? () => stopAudioRecorder() : startRecording}
+        onClick={isRecording ? () => stopAudioRecorder(false) : startRecording}
         data-testid="ar_mic"
-        title={isRecording ? "Save recording" : "Start recording"}
+        data-title={isRecording ? "Save recording" : "Start recording"}
       />
       <span
         className={`audio-recorder-timer ${
@@ -190,22 +185,34 @@ const AudioRecorder: (props: Props) => ReactElement = ({
           Recording
         </span>
       )}
-      <img
-        src={isPaused ? resumeSVG : pauseSVG}
-        className={`audio-recorder-options ${
-          !isRecording ? "display-none" : ""
-        } ${classes?.AudioRecorderPauseResumeClass ?? ""}`}
-        onClick={togglePauseResume}
-        title={isPaused ? "Resume recording" : "Pause recording"}
-        data-testid="ar_pause"
-      />
-      <img
-        src={discardSVG}
+      {isPaused ? (
+        <Play
+          fill="white"
+          className={`audio-recorder-options ${
+            !isRecording ? "display-none" : ""
+          } ${classes?.AudioRecorderPauseResumeClass ?? ""}`}
+          onClick={togglePauseResume}
+          data-title={isPaused ? "Resume recording" : "Pause recording"}
+          data-testid="ar_pause"
+        />
+      ) : (
+        <Pause
+          fill="white"
+          className={`audio-recorder-options ${
+            !isRecording ? "display-none" : ""
+          } ${classes?.AudioRecorderPauseResumeClass ?? ""}`}
+          onClick={togglePauseResume}
+          data-title={isPaused ? "Resume recording" : "Pause recording"}
+          data-testid="ar_pause"
+        />
+      )}
+      <Square
+        fill="white"
         className={`audio-recorder-options ${
           !isRecording ? "display-none" : ""
         } ${classes?.AudioRecorderDiscardClass ?? ""}`}
         onClick={() => stopAudioRecorder(false)}
-        title="Discard Recording"
+        data-title="Discard Recording"
         data-testid="ar_cancel"
       />
     </div>

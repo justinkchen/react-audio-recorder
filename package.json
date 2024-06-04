@@ -97,6 +97,7 @@
   },
   "dependencies": {
     "@ffmpeg/ffmpeg": "^0.11.6",
+    "lucide-react": "^0.383.0",
     "react-audio-visualize": "^1.1.3"
   }
 }

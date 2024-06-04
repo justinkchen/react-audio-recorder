@@ -7,6 +7,12 @@ import pauseSVG from "../icons/pause.svg";
 import resumeSVG from "../icons/play.svg";
 import saveSVG from "../icons/save.svg";
 import discardSVG from "../icons/stop.svg";
+import {
+  Mic,
+  Pause,
+  Play,
+  Square
+} from 'lucide-react';
 import "../styles/audio-recorder.css";
 
 const LiveAudioVisualizer = React.lazy(async () => {
